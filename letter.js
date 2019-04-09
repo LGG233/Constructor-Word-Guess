@@ -6,16 +6,20 @@
 //   * A function that returns the underlying character if the letter has been guessed, or a placeholder (like an underscore) if the letter has not been guessed
 //   * A function that takes a character as an argument and checks it against the underlying character, updating the stored boolean value to true if it was guessed correctly
 var guessedValue = 0;
+var used = false
 
 function Letter(letter, guessed) {
     // this.guessed = false;
     this.letter = letter.toUpperCase();
-    this.checkLetter = function (wordArray, spacesArray) {
-        var guessedValue = 0;
+    this.checkLetter = function (wordArray, spacesArray, usedLetters) {
+        guessedValue = 0;
+        usedLetters.push(this.letter)
         for (var i = 0; i < wordArray.length; i++) {
+            used = false;
             if (wordArray[i] === this.letter) {
                 guessedValue = guessedValue++
                 spacesArray[i] = this.letter;
+                used = true
             }
         }
         if (guessedValue > 0) {
@@ -23,7 +27,6 @@ function Letter(letter, guessed) {
         }
     }
 }
-
 module.exports = Letter;
 
 // if (randomName.includes(userChoice)) {

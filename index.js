@@ -9,6 +9,7 @@ var gameWords = ["St Petersbourg", "Paris", "Milan", "Barcelona", "Buenos Aires"
 var spacesArray = [];
 var guessed = true;
 var count = 0;
+var usedLetters = [];
 
 gameSetup();
 function gameSetup() {
@@ -23,7 +24,7 @@ function gameSetup() {
         }
     }
     // console.log(wordArray);
-    console.log(spacesArray);
+    console.log(spacesArray.join(" "));
 }
 Getinput();
 
@@ -37,13 +38,14 @@ function Getinput() {
         var letter = answer.letter;
         var newLetter = new Letter(letter);
         count = count + 1
-        newLetter.checkLetter(wordArray, spacesArray);
+        newLetter.checkLetter(wordArray, spacesArray, usedLetters);
         console.log("You guessed: " + newLetter.letter);
         console.log("Your guess is in the word: " + newLetter.guessed);
-        // console.log(wordArray);
-        console.log(spacesArray);
+        console.log(spacesArray.join(" "));
+        console.log("Used letters: " + usedLetters.join(" "));
         if (count > 9) {
             console.log("Too many tries. You lose")
+            console.log(wordArray.join(" "));
             return
         } else if (spacesArray.includes("_")) {
             console.log("Not there yet - keep guessing");
