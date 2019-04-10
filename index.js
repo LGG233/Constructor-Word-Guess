@@ -4,7 +4,7 @@
 
 var Letter = require("./letter");
 var inquirer = require("inquirer");
-// var word = require("./word.js");
+var Word = require("./word.js");
 var gameWords = ["St Petersbourg", "Paris", "Milan", "Barcelona", "Buenos Aires", "Singapore", "Hong Kong", "Hangzhou", "Geneva", "New York", "San Francisco"]
 var spacesArray = [];
 var guessed = true;
@@ -13,22 +13,17 @@ var usedLetters = [];
 
 gameSetup();
 function gameSetup() {
-    randomName = gameWords[Math.floor(Math.random() * gameWords.length)];
-    randomName = randomName.toUpperCase()
-    wordArray = randomName.split("");
-    for (var i = 0; i < wordArray.length; i++) {
-        if (wordArray[i] != " ") {
-            spacesArray.push("_");
-        } else {
-            spacesArray.push(" ");
-        }
-    }
-    // console.log(wordArray);
-    console.log(spacesArray.join(" "));
+    var newWord = new Word();
+    newWord.arrayify()
+    var gameWordArray = newWord.wordArray;
+    var gameSpacesArray = newWord.spacesArray;
+    console.log("this is the newWord.wordArray: " + newWord.wordArray);
+    console.log("this is the gameWordArray: " + gameWordArray);
+    console.log("this is the gameSpacesArray: " + gameSpacesArray);
+    Getinput(gameWordArray, gameSpacesArray);
 }
-Getinput();
 
-function Getinput() {
+function Getinput(gameWordArray, gameSpacesArray) {
     inquirer.prompt([
         {
             name: "letter",
@@ -38,16 +33,16 @@ function Getinput() {
         var letter = answer.letter;
         var newLetter = new Letter(letter);
         count = count + 1
-        newLetter.checkLetter(wordArray, spacesArray, usedLetters);
+        newLetter.checkLetter(gameWordArray, gameSpacesArray, usedLetters);
         console.log("You guessed: " + newLetter.letter);
         console.log("Your guess is in the word: " + newLetter.guessed);
-        console.log(spacesArray.join(" "));
+        console.log(gameSpacesArray.join(" "));
         console.log("Used letters: " + usedLetters.join(" "));
         if (count > 9) {
             console.log("Too many tries. You lose")
-            console.log(wordArray.join(" "));
+            console.log(gameWordArray.join(" "));
             return
-        } else if (spacesArray.includes("_")) {
+        } else if (gameSpacesArray.includes("_")) {
             console.log("Not there yet - keep guessing");
             Getinput();
         } else {
@@ -55,7 +50,6 @@ function Getinput() {
         }
     })
 }
-
 
 // var pickedLetter;
 // var letterStatus = false;
