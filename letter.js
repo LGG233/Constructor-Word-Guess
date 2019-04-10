@@ -7,7 +7,8 @@
 //   * A function that takes a character as an argument and checks it against the underlying character, updating the stored boolean value to true if it was guessed correctly
 var Word = require("./word.js");
 var guessedValue = 0;
-var used = false
+var wrong = true;
+var usedLetters = [];
 
 function Letter(letter, guessed) {
     // this.guessed = false;
@@ -17,19 +18,20 @@ function Letter(letter, guessed) {
     this.checkLetter = function (gameWordArray, gameSpacesArray, usedLetters) {
         console.log("this is the gameWordArray in letters.js: " + gameWordArray);
         console.log("this is the gameSpacesArray in letters.js: " + gameSpacesArray);
-        guessedValue = 0;
-        usedLetters.push(this.letter)
+        // guessedValue = 0;
         for (var i = 0; i < gameWordArray.length; i++) {
-            used = false;
+            wrong = true;
             if (gameWordArray[i] === this.letter) {
-                guessedValue = guessedValue++
+                // guessedValue = guessedValue++
                 gameSpacesArray[i] = this.letter;
-                used = true
+                wrong = false;
+            } else {
+                wrong = true;
             }
         }
-        // console.log(gameSpacesArray.join(" "));
-        if (guessedValue > 0) {
-            this.guessed = true;
+        console.log(wrong);
+        if (wrong) {
+            usedLetters.push(this.letter)
         }
     }
 }
