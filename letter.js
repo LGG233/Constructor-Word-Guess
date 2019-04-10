@@ -26,7 +26,7 @@ function Letter(letter, guessed) {
                 gameSpacesArray[i] = this.letter;
                 // wrong = false;
                 // } else {
-                //     wrong = true;
+                //     wrong = true;git a
                 // }
             }
             // console.log(wrong);
