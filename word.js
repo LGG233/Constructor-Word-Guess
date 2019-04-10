@@ -24,7 +24,7 @@ function Word(wordArray, spacesArray) {
             }
             // console.log(spacesArray);
         }
-        console.log(this.spacesArray.join(" "));
+        console.log(this.spacesArray.join(" ") + "\r\n");
         // console.log(this.wordArray);
     }
 }
