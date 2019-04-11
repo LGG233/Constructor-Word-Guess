@@ -44,7 +44,7 @@ function Getinput(gameWordArray, gameSpacesArray) {
             console.log("Not there yet - keep guessing\r\n\r\n---------------------------\r\n");
             Getinput(gameWordArray, gameSpacesArray);
         } else {
-            console.log("Nice job! You won!");
+            console.log("Nice job! You won!\r\n\r\n");
             postGame();
         }
     })
