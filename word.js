@@ -22,10 +22,8 @@ function Word(wordArray, spacesArray) {
             } else {
                 spacesArray.push(" ");
             }
-            // console.log(spacesArray);
         }
         console.log(this.spacesArray.join(" ") + "\r\n");
-        // console.log(this.wordArray);
     }
 }
 module.exports = Word;
