@@ -15,21 +15,11 @@ function Letter(letter, guessed) {
     this.wordArray = Word.wordArray;
     this.spacesArray = Word.spacesArray;
     this.checkLetter = function (gameWordArray, gameSpacesArray, usedLetters) {
-        // console.log("this is the gameWordArray in letters.js: " + gameWordArray);
-        // console.log("this is the gameSpacesArray in letters.js: " + gameSpacesArray);
         usedLetters.push(this.letter)
-        // guessedValue = 0;
         for (var i = 0; i < gameWordArray.length; i++) {
-            // wrong = true;
             if (gameWordArray[i] === this.letter) {
-                // guessedValue = guessedValue++
                 gameSpacesArray[i] = this.letter;
-                // wrong = false;
-                // } else {
-                //     wrong = true;git a
-                // }
             }
-            // console.log(wrong);
             if (wrong) {
             }
         }

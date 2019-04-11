@@ -12,7 +12,6 @@ var usedLetters = [];
 var gameWordArray = [];
 var gameSpacesArray = [];
 
-
 gameSetup();
 function gameSetup() {
     console.clear();
@@ -23,13 +22,8 @@ function gameSetup() {
     newWord.arrayify()
     var gameWordArray = newWord.wordArray;
     var gameSpacesArray = newWord.spacesArray;
-    // console.log("this is the newWord.wordArray: " + newWord.wordArray);
-    // console.log("this is the gameWordArray: " + gameWordArray);
-    // console.log("this is the gameSpacesArray: " + gameSpacesArray);
     Getinput(gameWordArray, gameSpacesArray);
-    // Getinput();
 }
-// function Getinput() {
 function Getinput(gameWordArray, gameSpacesArray) {
     inquirer.prompt([
         {
@@ -42,14 +36,9 @@ function Getinput(gameWordArray, gameSpacesArray) {
         count = count + 1
         newLetter.checkLetter(gameWordArray, gameSpacesArray, usedLetters);
         console.clear();
-        console.log("\r\n\r\n");
-        console.log("You have made " + count + " guesses.\r\n\r\r---------------------------\r\n");
-        // console.log("You guessed: " + newLetter.letter); 
-        console.log(gameSpacesArray.join(" ") + "\r\n\r\n---------------------------\r\n");
-        console.log("Used letters: " + usedLetters.join(" ") + "\r\n\r\n---------------------------\r\n");
+        console.log("\r\n\r\n\r\n" + "You have made " + count + " guesses.\r\n\r\n\r\r---------------------------\r\n\r\n" + gameSpacesArray.join(" ") + "\r\n\r\n---------------------------\r\n\r\nUsed letters: " + usedLetters.join(" ") + "\r\n\r\n---------------------------\r\n");
         if (count > 9) {
-            console.log("Too many tries. You lose")
-            console.log(gameWordArray.join(" "));
+            console.log("Too many tries. You lose\r\n\r\n" + gameWordArray.join(" "));
             postGame();
         } else if (gameSpacesArray.includes("_")) {
             console.log("Not there yet - keep guessing\r\n\r\n---------------------------\r\n");
