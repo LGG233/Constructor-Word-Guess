@@ -5,7 +5,6 @@
 var Letter = require("./letter");
 var inquirer = require("inquirer");
 var Word = require("./word.js");
-var gameWords = ["St Petersbourg", "Paris", "Milan", "Barcelona", "Buenos Aires", "Singapore", "Hong Kong", "Hangzhou", "Geneva", "New York", "San Francisco"]
 var spacesArray = [];
 var guessed = true;
 var count = 0;
@@ -17,7 +16,9 @@ var gameSpacesArray = [];
 gameSetup();
 function gameSetup() {
     console.clear();
-    console.log("Welcome to 'Hangman Around The World.' The words you have to guess are names of cities from around the world. \r\nYou have ten guesses per city. Good luck! Here is your city to guess:");
+    count = 0;
+    usedLetters = [];
+    console.log("\r\n\r\n\r\nWelcome to 'Hangman Around The World.' The words you have to guess are names of cities from around the world. \r\nYou have ten guesses per city. Good luck! Here is your city to guess:\r\n");
     var newWord = new Word();
     newWord.arrayify()
     var gameWordArray = newWord.wordArray;
@@ -49,13 +50,30 @@ function Getinput(gameWordArray, gameSpacesArray) {
         if (count > 9) {
             console.log("Too many tries. You lose")
             console.log(gameWordArray.join(" "));
-            return
+            postGame();
         } else if (gameSpacesArray.includes("_")) {
             console.log("Not there yet - keep guessing\r\n\r\n---------------------------\r\n");
             Getinput(gameWordArray, gameSpacesArray);
         } else {
             console.log("Nice job! You won!");
+            postGame();
         }
     })
 }
-
+function postGame() {
+    inquirer.prompt([
+        {
+            type: "list",
+            name: "gameEnd",
+            message: "Would you like to play again?",
+            choices: ["Play again", "Exit"]
+        }
+    ]).then(function (answer) {
+        if (answer.gameEnd === "Play again"){
+            gameSetup();
+        } else {
+            console.log("Thanks for playing!");
+            return
+        }
+    })    
+}

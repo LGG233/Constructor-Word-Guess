@@ -6,7 +6,7 @@
 //   * A function that takes a character as an argument and calls the guess function on each letter object (the second function defined in `Letter.js`)
 
 var Letter = require("./letter");
-var gameWords = ["St Petersbourg", "Paris", "Milan", "Barcelona", "Buenos Aires", "Singapore", "Hong Kong", "Hangzhou", "Geneva", "New York", "San Francisco"]
+var gameWords = ["St Petersbourg", "Paris", "Milan", "Barcelona", "Buenos Aires", "Singapore", "Hong Kong", "Hangzhou", "Geneva", "New York", "San Francisco", "Chicago", "Tokyo", "Sydney", "Beijing", "Ouagadougou", "Algiers", "Limoges", "Amsterdam", "Moscow", "Gdansk"]
 
 function Word(wordArray, spacesArray) {
     var randomName = gameWords[Math.floor(Math.random() * gameWords.length)];
